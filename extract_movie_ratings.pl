@@ -26,8 +26,15 @@ print "\n$filename\n";
 
 # -- preprocessing
 # all blogposts are written in one long line in the xml file, 
-# split them up by inserting a line-break before each <title> element
+# beginning of an individual blogpost is marked by <category>
+# split them up by inserting a line-break before <category> element
 
+$^I = '.bak';
+
+while (<>) {
+    s/<category/\n<category/g;
+    print;
+}
 
 
 # Read in the xml file
