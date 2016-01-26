@@ -20,20 +20,14 @@ if ($num_args != 1) {
 };
  
 # Read our command line argument
-#my $filename = $ARGV[0];
+my $filename = $ARGV[0];
 
-#print "\n$filename\n";
+print "\n$filename\n";
 
 # -- preprocessing
 # all blogposts are written in one long line in the xml file, 
 # split them up by inserting a line-break before each <title> element
 
-$^I = '.bak';
-
-while (<>) {
-    s/title/x/g;
-    print;
-}
 
 
 # Read in the xml file
