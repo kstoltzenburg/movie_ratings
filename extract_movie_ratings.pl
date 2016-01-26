@@ -29,11 +29,14 @@ print "\n$filename\n";
 # beginning of an individual blogpost is marked by <category>
 # split them up by inserting a line-break before <category> element
 
+# Note: this is really bad, I'm not really sure how it works
+
 $^I = '.bak';
 
 while (<>) {
     s/<category/\n<category/g;
     print;
+    #todo: I'd like to have this written into a new file
 }
 
 
