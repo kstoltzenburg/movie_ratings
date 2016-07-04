@@ -37,9 +37,9 @@ while (<$in>) {
 }
 
 
-# remove unrelevant blogposts: remove lines not containing ("term='filmfern'")
+# TODO: this all looks *cough* slightly *cough* overhead
 
-# TODO: this looks *cough* slightly *cough* overhead
+# remove unrelevant blogposts: remove lines not containing ("term='filmfern'")
 
 open ($in, "<", "output.txt")   or die "Can't read input file: $!";
 open ($out, ">", "output_2.txt") or die "Can't write new file: $!";
@@ -48,7 +48,18 @@ while (<$in>) {
     print $out $_ if /term='filmfern'/;
 }
 
+#Split by markup bold <b>
+
+open ($in, "<", "output_2.txt")   or die "Can't read input file: $!";
+open ($out, ">", "output_3.txt") or die "Can't write new file: $!";
+
+while (<$in>) {
+    s/&lt;b&gt;/\n/g;
+    print $out $_;
+}
+
 close $out;
+
 
 
 
