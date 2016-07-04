@@ -20,35 +20,23 @@ if ($num_args != 1) {
 };
  
 # Read our command line argument
-my $filename = $ARGV[0];
-
-print "\n$filename\n";
+my $infile = $ARGV[0];
 
 # -- preprocessing
 # all blogposts are written in one long line in the xml file, 
 # beginning of an individual blogpost is marked by <category>
 # split them up by inserting a line-break before <category> element
+# http://perldoc.perl.org/functions/open.html
 
-# Note: this is really bad, I'm not really sure how it works
+open (my $in, "<", $infile)   or die "Can't read input file: $!";
+open (my $out, ">", "output.txt") or die "Can't write new file: $!";
 
-$^I = '.bak';
-
-while (<>) {
+while (<$in>) {
     s/<category/\n<category/g;
-    print;
-    #todo: I'd like to have this written into a new file
+    print $out $_;
 }
 
-
-# Read in the xml file
-#open (my $fh, '<', $filename ) or die "Can't open $filename: $!";
-#    while ( my $line = <$fh> ) {
-#        if ($line =~ /wanted text/ ) {
-#           print $line;
-#        }
-#    };
-#    close $fh;
-
+close $out;
 
 
 # exract information - movie title (bold?), rating ([0-9]/10), year published
