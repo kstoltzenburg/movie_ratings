@@ -3,6 +3,7 @@
 import re
 # from bs4 import BeautifulSoup
 
+# TODO: input file as command line argument, exit if not provided
 inf = 'testdata/blog-small-example.xml'
 ouf = 'output.xml'
 
@@ -28,6 +29,23 @@ for line in lines:
         output.write(line)
 output.close()
 
+# Extract sections of interest
+
+# TODO extract blogpost title as well?
+
+output = open(ouf, 'r')
+filetext = output.read()
+output.close()
+
+# movie titles
+# NOTE: only works if nothing but movie titles are bolded
+movies = re.findall("&lt;b&gt;(.*?)&lt;/b&gt;", filetext)
+print movies
+
+# movie ratings
+# NOTE: could movie title and rating get out of sync?
+ratings = re.findall(" ([0-9]/10)", filetext)
+print ratings
 
 # Extract the sections of interest from those
 
