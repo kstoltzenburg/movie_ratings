@@ -16,13 +16,13 @@ if len(sys.argv) != 2:
 inf = sys.argv[1]
 ouf = 'output.xml'
 
-# from input, split lines by category, write to output
+# preprocess input - each blogpost in its own line
 fobj = open(inf, 'r')
 output = open(ouf, 'w')
 
 for eachLine in fobj:
-    # split lines by adding a line ending before each category tag
-    split_line = re.sub('<category', '\n<category', eachLine)
+    # split lines by adding a line ending at the end of each blogpost
+    split_line = re.sub('</updated>', '</updated>\n', eachLine)
     output.write(split_line)
 fobj.close()
 output.close()
@@ -43,26 +43,21 @@ output = open(ouf, 'r')
 filetext = output.read()
 output.close()
 
-# TODO extract blogpost title as well?
-
 # movie titles, ranking
 # NOTE: brittle, relies on a consistent structure in the xml
-# FIXME: currently fails to retrieve all movies and their ratings
 
 # regexes matching movie title and rating
 re_b = "&lt;b&gt;(.*?)&lt;/b&gt;.*? ([0-9]?.?[0-9]/10)"
 re_bold = "bold;\"&gt;(.*?)&lt.*? ([0-9]?.?[0-9]/10)"
 
-
+# find movies and rating
 movie_ranking = re.findall(re_b, filetext)
 movie_ranking.extend(re.findall(re_bold, filetext))
 
-# write extracted data in file line by line
+# write extracted data in output file
 output = open(ouf, 'w')
-
 for item in movie_ranking:
     output.write("%s\n" % ', '.join(map(str, item)))
-
 output.close()
 
 # Report on data retrieved
