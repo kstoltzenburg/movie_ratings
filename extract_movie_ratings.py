@@ -46,9 +46,16 @@ output.close()
 # TODO extract blogpost title as well?
 
 # movie titles, ranking
-# NOTE: relies on a consistent structure in the xml
+# NOTE: brittle, relies on a consistent structure in the xml
 # FIXME: currently fails to retrieve all movies and their ratings
-movie_ranking = re.findall("&lt;b&gt;(.*?)&lt;/b&gt;.*? ([0-9]?.?[0-9]/10)", filetext)
+
+# regexes matching movie title and rating
+re_b = "&lt;b&gt;(.*?)&lt;/b&gt;.*? ([0-9]?.?[0-9]/10)"
+re_bold = "bold;\"&gt;(.*?)&lt.*? ([0-9]?.?[0-9]/10)"
+
+
+movie_ranking = re.findall(re_b, filetext)
+movie_ranking.extend(re.findall(re_bold, filetext))
 
 # write extracted data in file line by line
 output = open(ouf, 'w')
@@ -58,8 +65,7 @@ for item in movie_ranking:
 
 output.close()
 
-
-# Claim success
+# Report on data retrieved
 print "Input file: " + inf
 print str(len(movie_ranking)) + " movies and rankings extracted"
 print "Output file: " + ouf
