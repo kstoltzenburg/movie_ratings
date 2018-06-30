@@ -1,7 +1,6 @@
 #!/usr/bin/env python2
 
 import re
-# from bs4 import BeautifulSoup
 
 # TODO: input file as command line argument, exit if not provided
 inf = 'testdata/blog-small-example.xml'
@@ -37,34 +36,9 @@ output = open(ouf, 'r')
 filetext = output.read()
 output.close()
 
-# movie titles
+# movie titles, ranking
 # NOTE: only works if nothing but movie titles are bolded
-movies = re.findall("&lt;b&gt;(.*?)&lt;/b&gt;", filetext)
-print movies
+movie_ranking = re.findall("&lt;b&gt;(.*?)&lt;/b&gt;.*?([0-9]/10)", filetext)
 
-# movie ratings
-# NOTE: could movie title and rating get out of sync?
-ratings = re.findall(" ([0-9]/10)", filetext)
-print ratings
-
-# Extract the sections of interest from those
-
-# fobj = open('more_output.xml', 'r')
-# soup = BeautifulSoup(fobj, 'lxml')
-
-# print soup.prettify()
-
-# todo - get all the titles as well together with the content?
-# todo - extract only bold, and ratings.
-
-
-# contentTag = soup.content
-# print contentTag.contents
-
-
-# aDict = soup.find_all({'title': True, 'content': True})
-# interest = soup.find_all('title')
-
-# print(interest)
-
-# fobj.close()
+# TODO: write to file or something?
+print movie_ranking
