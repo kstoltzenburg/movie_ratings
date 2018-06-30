@@ -1,9 +1,14 @@
 #!/usr/bin/env python2
 
 import re
+import sys
 
-# TODO: input file as command line argument, exit if not provided
-inf = 'testdata/blog-small-example.xml'
+if len(sys.argv) != 2:
+    print "Please provide an input file"
+    print "usage: python " + sys.argv[0] + " <inputfile>"
+    sys.exit(1)
+
+inf = sys.argv[1]
 ouf = 'output.xml'
 
 # from input, split lines by category, write to output
