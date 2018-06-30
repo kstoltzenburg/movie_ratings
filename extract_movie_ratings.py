@@ -50,5 +50,16 @@ output.close()
 # FIXME: currently fails to retrieve all movies and their ratings
 movie_ranking = re.findall("&lt;b&gt;(.*?)&lt;/b&gt;.*?([0-9]/10)", filetext)
 
-# TODO: write to file or something?
-print movie_ranking
+# write extracted data in file line by line
+output = open(ouf, 'w')
+
+for item in movie_ranking:
+    output.write("%s\n" % str(item))
+
+output.close()
+
+
+# Claim success
+print "Input file: " + inf
+print str(len(movie_ranking)) + " movies and rankings extracted"
+print "Output file: " + ouf
