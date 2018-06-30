@@ -48,7 +48,7 @@ output.close()
 # movie titles, ranking
 # NOTE: relies on a consistent structure in the xml
 # FIXME: currently fails to retrieve all movies and their ratings
-movie_ranking = re.findall("&lt;b&gt;(.*?)&lt;/b&gt;.*?([0-9]/10)", filetext)
+movie_ranking = re.findall("&lt;b&gt;(.*?)&lt;/b&gt;.*? ([0-9]?.?[0-9]/10)", filetext)
 
 # write extracted data in file line by line
 output = open(ouf, 'w')
