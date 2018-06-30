@@ -1,5 +1,10 @@
 #!/usr/bin/env python2
 
+# Repository:    https://github.com/kstoltzenburg/movie_ratings
+# Description:   Extract movie titles and rating
+#                from the xml export of a blog
+# Example input: ./testdata/blog-small-example.xml
+
 import re
 import sys
 
