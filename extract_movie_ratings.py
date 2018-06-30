@@ -54,7 +54,7 @@ movie_ranking = re.findall("&lt;b&gt;(.*?)&lt;/b&gt;.*?([0-9]/10)", filetext)
 output = open(ouf, 'w')
 
 for item in movie_ranking:
-    output.write("%s\n" % str(item))
+    output.write("%s\n" % ', '.join(map(str, item)))
 
 output.close()
 
