@@ -39,15 +39,15 @@ for line in lines:
 output.close()
 
 # Extract sections of interest
-
-# TODO extract blogpost title as well?
-
 output = open(ouf, 'r')
 filetext = output.read()
 output.close()
 
+# TODO extract blogpost title as well?
+
 # movie titles, ranking
-# NOTE: only works if nothing but movie titles are bolded
+# NOTE: relies on a consistent structure in the xml
+# FIXME: currently fails to retrieve all movies and their ratings
 movie_ranking = re.findall("&lt;b&gt;(.*?)&lt;/b&gt;.*?([0-9]/10)", filetext)
 
 # TODO: write to file or something?
