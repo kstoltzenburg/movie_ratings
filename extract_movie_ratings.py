@@ -14,7 +14,7 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 inf = sys.argv[1]
-ouf = 'output.xml'
+ouf = 'movies_rated_python.txt'
 
 # preprocess input - each blogpost in its own line
 fobj = open(inf, 'r')
