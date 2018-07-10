@@ -27,5 +27,12 @@ sed -e "s/<\/updated>/<\/updated>\\n/g" "$inf" > "$ouf"
 sed -n '/filmfern/p' "$ouf" > "$ouf.tmp" 
 mv "$ouf.tmp" "$ouf"
 
-exit
+# regexes matching movie title and rating
+re_b="&lt;b&gt;(.*?)&lt;/b&gt;.*? ([0-9]?.?[0-9]/10)"
+re_bold="bold;\"&gt;(.*?)&lt.*? ([0-9]?.?[0-9]/10)"
+
+grep -oP "$re_b" "$ouf" >> "$ouf.tmp"
+grep -oP "$re_bold" "$ouf" >> "$ouf.tmp"
+
+cat "$ouf.tmp"
 
