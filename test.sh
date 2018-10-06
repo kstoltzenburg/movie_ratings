@@ -3,7 +3,7 @@
 # test runner for the scripts to extract movie titles and rating
 # https://github.com/kstoltzenburg/movie_ratings
 # 
-# Runs a script on ./testdata/blog-small-example.xml
+# Runs a script on input ./testdata/blog-small-example.xml
 # Compares the output with ./gold/movies_rated.txt
 
 # set -x
